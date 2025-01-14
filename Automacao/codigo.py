@@ -2,8 +2,22 @@
 import pyautogui
 import time 
 import pandas as pd 
+from dotenv import load_dotenv
+import os
+
+
+# Carregar o arquivo .env.local
+load_dotenv(dotenv_path='.env.local')
+
+# Acessar as variáveis
+xlogin = os.getenv('X_LOGIN')
+ylogin = os.getenv('Y_LOGIN')
+xproduto = os.getenv('X_PRODUTO')
+yproduto = os.getenv('Y_PRODUTO')
+''
+
     #.click (clicar) .press(pressionar) . wirte(escrever) .hotkey(atalho)
-pyautogui.PAUSE = 1 #1s
+pyautogui.PAUSE = 0.9 #1s
 link = "https://dlp.hashtagtreinamentos.com/python/intensivao/login"
 
 pyautogui.press("win") #tecla windonws
@@ -15,9 +29,8 @@ pyautogui.press("enter")
 #espera do site para carregar
 time.sleep(3)
 #2° fazer o login
-
 #login
-pyautogui.click(x=2144, y=-295)
+pyautogui.click(x=xlogin, y=ylogin)
 pyautogui.click(clicks=3, interval=0.25)
 pyautogui.press("del")
 pyautogui.write("victor1231967@hotmail.com")
@@ -40,7 +53,7 @@ time.sleep(2)
 #4 cadastrar 1 produto
 for linha in tabela.index:       
     #tabela.columns -- coluna --index = linha
-    pyautogui.click(x=2200, y=-442)
+    pyautogui.click(x=xproduto, y=yproduto)
     #codigo
     codigo = tabela.loc[linha, "codigo"]
     pyautogui.write(str(codigo))
